@@ -1,9 +1,11 @@
 import React from 'react';
 import style from './Post.module.css';
 
-const Post = () => {
+const Post = (props) => {
     return (
-        <div></div>
+        <div className={style.post}>
+            <h3>{props.message}</h3>
+        </div>
     );
 }
 

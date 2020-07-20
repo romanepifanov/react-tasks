@@ -1,0 +1,11 @@
+.app {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.wrapper {
+  display: flex;
+  width: 1200px;
+  height: calc(100vh - 35px);
+}

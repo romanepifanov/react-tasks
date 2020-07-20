@@ -5,9 +5,11 @@ import Post from './components/post/Post';
 
 const Profile = () => {
     return (
-        <main>
+        <main className={style.profile}>
             <PostForm />
-            <Post />
+            <Post message="Hello there"/>
+            <Post message="I am okay, how are you?"/>
+            <Post message="I have new car"/>
         </main>
     );
 }
