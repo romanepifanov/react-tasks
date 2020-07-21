@@ -3,13 +3,17 @@ import style from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
+    const links = [
+        {to: '/profile', title: 'Profile'},
+        {to: '/dialogs', title: 'Messages'},
+        {to: '/news', title: 'News'},
+        {to: '/music', title: 'Music'},
+        {to: '/settings', title: 'Settings'},
+    ];
+
     return (
         <nav className={style.navbar}>
-            <NavLink activeClassName={style.active} to="/profile">Profile</NavLink>
-            <NavLink activeClassName={style.active} to="/dialogs">Messages</NavLink>
-            <NavLink activeClassName={style.active} to="/news">News</NavLink>
-            <NavLink activeClassName={style.active} to="/music">Music</NavLink>
-            <NavLink activeClassName={style.active} to="/settings">Settings</NavLink>
+            {links.map((i, key) => <NavLink key={key} activeClassName={style.active} to={i.to}>{i.title}</NavLink>)}
         </nav>
     );
 }
