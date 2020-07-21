@@ -1,3 +1,4 @@
+let renderTree = () => {};
 
 const state = {
     navbarPage: {
@@ -32,20 +33,27 @@ const state = {
     }
 };
 
-export let addPost = (id, content) => {
+export const addPost = (id) => {
     let newPost = {
         id: id,
         likesCount: 0,
-        content: content
+        content: state.profilePage.postForm.content
     };
 
     state.profilePage.posts.push(newPost);
+    state.profilePage.postForm.content = '';
+    renderTree();
     console.log(state.profilePage.postForm.posts);
 }
 
-export let changingNewPost = (content) => {
+export const changingNewPost = (content) => {
     state.profilePage.postForm.content = content;
     console.log(state.profilePage.postForm.content);
+    renderTree();
+}
+
+export const subscribe = (observer) => {
+    renderTree = observer;
 }
 
 export default state;
