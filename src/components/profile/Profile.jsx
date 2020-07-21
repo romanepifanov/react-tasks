@@ -8,7 +8,7 @@ const Profile = (props) => {
         <main className={style.profile}>
             <PostForm />
             
-            {props.posts.map((i, key) => <Post key={key} likesCount={i.likesCount} content={i.content}/>)}
+            {props.state.posts.map((i, key) => <Post key={key} likesCount={i.likesCount} content={i.content}/>)}
         </main>
     );
 }
