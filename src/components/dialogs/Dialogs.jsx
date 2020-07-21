@@ -11,7 +11,7 @@ const Dialogs = (props) => {
             </div>
             <div className={style.dialogField}>
                 <div className={style.dialogBox}>
-                    {props.state.messages.map((i, key) => <Message key={key} text={i.text} time={i.time} />)}
+                    {props.state.messages.map((i, key) => <Message key={key} text={i.text} time={i.time} own={i.own} />)}
                 </div>
 
                 <form action="">

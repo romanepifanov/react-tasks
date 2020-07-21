@@ -3,7 +3,7 @@ import style from './Message.module.css';
 
 const Message = (props) => {
     return (
-        <div className={style.message}>
+        <div className={props.own ? style.messageRight : style.messageLeft}>
             <div className={style.messageBox}>
                 <img className={style.messageLogo} src="" alt=""/>
                 <div  className={style.messageContent}>

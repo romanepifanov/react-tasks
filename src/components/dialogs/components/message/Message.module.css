@@ -1,6 +1,13 @@
-.message {
+.messageLeft {
     width: 100%;
     display: flex;
+    justify-content: flex-start;
+}
+
+.messageRight {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .messageBox {
