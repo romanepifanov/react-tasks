@@ -3,11 +3,11 @@ import style from './PostForm.module.css';
 
 const PostForm = (props) => {
     let addingPost = () => {
-        props.addPost(1);
+        props.dispatch({type: 'ADD-POST', id: 1});
     }
 
     let changingPost = (event) => {
-        props.changingNewPost(event.currentTarget.value);
+        props.dispatch({type: 'WRITING-NEW-POST', content: event.currentTarget.value});
     }
 
     return (
