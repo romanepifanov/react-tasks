@@ -13,7 +13,7 @@ const PostForm = (props) => {
     return (
         <form>
             <textarea onChange={changingPost} value={props.content} cols="30" rows="10" />
-            <button onClick={addingPost}>Add</button>
+            <button type="button" onClick={addingPost}>Add</button>
         </form>
     );
 }
