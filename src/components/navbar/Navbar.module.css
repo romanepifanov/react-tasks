@@ -1,5 +1,17 @@
 .navbar {
     width: 100px;
     padding: 10px;
-    background-color: gray;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.navbar a {
+    width: 100%;
+    color: #bdbdbd;
+    text-decoration: none;
+}
+
+.navbar .active {
+    color: #6d58de;
 }
