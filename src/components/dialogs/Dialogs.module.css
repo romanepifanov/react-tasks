@@ -1,4 +1,24 @@
 .dialogs {
     width: calc(100% - 100px);
     padding: 20px;
+    display: flex;
+}
+
+.dialogsWrapper {
+    width: 350px;
+    border-right: solid 1px grey;
+    height: 100%;
+}
+
+.dialogField {
+    width: calc(100% - 351px);
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dialogBox {
+    width: 100%;
+    height: calc(100% - 150px);
 }

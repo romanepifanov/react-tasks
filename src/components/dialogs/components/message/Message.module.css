@@ -1,0 +1,36 @@
+.message {
+    width: 100%;
+    display: flex;
+}
+
+.messageBox {
+    max-width: 90%;
+    background-color: #f39bc7;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.messageLogo {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.messageContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin: 0 0 0 6px;
+}
+
+.messageText {
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.messageTime {
+    font-size: 12px;
+}
