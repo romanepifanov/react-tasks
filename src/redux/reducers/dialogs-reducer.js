@@ -34,26 +34,36 @@ let initialState = {
     }
 }
 
-const dialogsReducer = (state= initialState, action) => {
+const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SEND_MESSAGE: {
+        case SEND_MESSAGE:
             let newMessage = {
                 own: true,
                 time: (new Date).toString(),
                 text: state.dialogForm.newMessage
             };
 
-            state.messages.push(newMessage);
-            state.dialogForm.newMessage = '';
-        }
-        break;
-    case UPDATE_NEW_MESSAGE_TEXT: {
-        state.dialogForm.newMessage = action.content;
+            return {
+                ...state,
+                messages: [
+                    ...state.messages,
+                    newMessage
+                ],
+                dialogForm: {
+                    ...state.dialogForm,
+                    newMessage: ''
+                }
+            };
+        case UPDATE_NEW_MESSAGE_TEXT:
+            return {
+                ...state,
+                dialogForm: {
+                    ...state.dialogForm,
+                    newMessage: action.content
+                }
+            };
+        default: return state;
     }
-    break;
-    }
-
-    return state;
 }
 
 
