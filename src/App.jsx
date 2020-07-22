@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './App.module.css';
 import Header from './components/header/Header';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import News from './components/news/News';
 import Music from './components/music/Music';
 import Settings from './components/settings/Settings';
@@ -17,6 +17,8 @@ const App = (props) => {
 
       <main className={style.wrapper}>
         <NavbarContainer store={props.store} />
+        <Redirect exact from="/" to="profile" />
+        <Redirect from='*' to='/profile' />
         <Route path="/profile" render={() => <ProfileContainer />} />
         <Route path="/dialogs" render={() => <DialogsContainer />} />
         <Route path="/search" render={() => <SearchContainer />} />
