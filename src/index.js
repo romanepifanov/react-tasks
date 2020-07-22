@@ -6,7 +6,6 @@ import App from './App';
 import store from './redux/store';
 
 const renderTree = (state) => {
-  debugger
   ReactDOM.render(
     <React.StrictMode>
       <App state={state} dispatch={store.dispatch.bind(store)}/>
