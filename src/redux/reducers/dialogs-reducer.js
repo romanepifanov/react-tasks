@@ -39,7 +39,7 @@ const dialogsReducer = (state = initialState, action) => {
         case SEND_MESSAGE:
             let newMessage = {
                 own: true,
-                time: (new Date).toString(),
+                time: (new Date()).toString(),
                 text: state.dialogForm.newMessage
             };
 
