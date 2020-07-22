@@ -20,6 +20,10 @@ let initialState = {
             to: '/settings',
             title: 'Settings'
         },
+        {
+            to: '/search',
+            title: 'Search users'
+        }
     ]
 }
 

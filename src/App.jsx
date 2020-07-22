@@ -8,6 +8,7 @@ import Settings from './components/settings/Settings';
 import DialogsContainer from './components/dialogs/DialogsContainer';
 import NavbarContainer from './components/navbar/NavbarContainer';
 import ProfileContainer from './components/profile/ProfileContainer';
+import SearchContainer from './components/search/SearchContainer';
 
 const App = (props) => {
   return (
@@ -18,6 +19,7 @@ const App = (props) => {
         <NavbarContainer store={props.store} />
         <Route path="/profile" render={() => <ProfileContainer />} />
         <Route path="/dialogs" render={() => <DialogsContainer />} />
+        <Route path="/search" render={() => <SearchContainer />} />
         <Route path="/news" render={() => <News />} />
         <Route path="/music" render={() => <Music />} />
         <Route path="/settings" render={() => <Settings />} />
