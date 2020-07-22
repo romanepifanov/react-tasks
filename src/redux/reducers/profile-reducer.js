@@ -46,14 +46,14 @@ const profileReducer = (state = initialState, action) => {
 }
 
 
-export const addPostActionCreator = (userId) => {
+export const addPostAction = (userId) => {
     return {
         type: ADD_POST,
         usrId: userId
     }
 }
 
-export const updateNewPostTextActionCreator = (content) => {
+export const updateNewPostTextAction = (content) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         content: content

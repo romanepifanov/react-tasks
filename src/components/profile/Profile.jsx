@@ -6,7 +6,7 @@ import Post from './components/post/Post';
 const Profile = (props) => {
     return (
         <main className={style.profile}>
-            <PostForm dispatch={props.dispatch} content={props.state.postForm.content}/>
+            <PostForm onAddPost={props.onAddPost} onChangePost={props.onChangePost} content={props.state.postForm.content}/>
             
             {props.state.posts.map((i, key) => <Post key={key} likesCount={i.likesCount} content={i.content}/>)}
         </main>
