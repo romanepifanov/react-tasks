@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './PostForm.module.css';
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../../redux/state';
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../../redux/reducers/profile-reducer';
 
 const PostForm = (props) => {
     let addingPost = () => {
