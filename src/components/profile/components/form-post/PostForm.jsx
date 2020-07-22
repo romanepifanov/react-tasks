@@ -1,13 +1,14 @@
 import React from 'react';
 import style from './PostForm.module.css';
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../../redux/state';
 
 const PostForm = (props) => {
     let addingPost = () => {
-        props.dispatch({type: 'ADD-POST', id: 1});
+        props.dispatch(addPostActionCreator(1));
     }
 
     let changingPost = (event) => {
-        props.dispatch({type: 'WRITING-NEW-POST', content: event.currentTarget.value});
+        props.dispatch(updateNewPostTextActionCreator(event.currentTarget.value));
     }
 
     return (

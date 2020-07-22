@@ -2,8 +2,17 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import DialogItem from './components/dialog-item/DialogItem';
 import Message from './components/message/Message';
+import { updateNewMessageTextActionCreator, sendMessageActionCreator } from '../../redux/state';
 
 const Dialogs = (props) => {
+    const newMessageText = (event) => {
+        props.dispatch(updateNewMessageTextActionCreator(event.target.value));
+    }
+
+    const sendMessage = () => {
+        props.dispatch(sendMessageActionCreator());
+    }
+
     return (
         <main className={style.dialogs}>
             <div className={style.dialogsWrapper}>
@@ -15,7 +24,8 @@ const Dialogs = (props) => {
                 </div>
 
                 <form action="">
-                    form
+                    <textarea onChange={newMessageText} value={props.state.newMessage}></textarea>
+                   <button onClick={sendMessage} type="button">Send</button>
                 </form>
             </div>
         </main>
