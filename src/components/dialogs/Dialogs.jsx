@@ -15,7 +15,7 @@ const Dialogs = (props) => {
                     {props.state.messages.map((i, key) => <Message key={key} text={i.text} time={i.time} own={i.own} />)}
                 </div>
 
-                <Form className={style.dialogsForm} name="nest-messages" onFinish={props.onSendMessage}>
+                <Form className={style.dialogsForm} name="new-message-form" onFinish={props.onSendMessage}>
                     <Form.Item>
                         <Input.TextArea onChange={props.onChangeText} value={props.state.dialogForm.newMessage}/>
                     </Form.Item>

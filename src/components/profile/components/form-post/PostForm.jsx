@@ -3,7 +3,7 @@ import {Form, Input, Button} from 'antd';
 
 const PostForm = (props) => {
     return (
-         <Form name="nest-messages" onFinish={props.onAddPost}>
+         <Form name="new-post-form" onFinish={props.onAddPost}>
             <Form.Item>
                 <Input.TextArea onChange={props.onChangePost} value={props.content}/>
             </Form.Item>

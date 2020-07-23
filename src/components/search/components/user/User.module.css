@@ -36,21 +36,9 @@
     background-color: #17a262;
 }
 
-.userInformation {
-
-}
-
 .userName {
     margin: 0 0 4px;
     width: 100%;
-}
-
-.userLocation {
-    margin: 0 0 4px;
-    width: 100%;
-    font-size: 14px;
-    color: #ababab;
-    display: block;
 }
 
 .userStatus {
