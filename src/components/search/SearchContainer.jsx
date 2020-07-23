@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Search from './Search';
-import { switchFollowAction, loadModeAction } from '../../redux/reducers/search-reducer';
+import { switchFollowAction, loadModeAction, setUsersAction } from '../../redux/reducers/search-reducer';
 
 const mapStateToProps = (state) => {
     return { 
@@ -13,10 +13,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onChangeFollow: (userId) => {
-            dispatch(switchFollowAction(userId))
+            dispatch(switchFollowAction(userId));
         },
         onLoadMore: () => {
-            dispatch(loadModeAction())
+            dispatch(loadModeAction());
+        },
+        onSetUsers: (users) => {
+            dispatch(setUsersAction(users));
         }
     }
 }

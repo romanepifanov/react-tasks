@@ -1,5 +1,7 @@
 import React from 'react';
 import style from './User.module.css';
+import { Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 const User = (props) => {
     const buttonClasses = `${style.userFollow} ${props.user.followed ? style.userFollowActive : '' }`;
@@ -7,7 +9,8 @@ const User = (props) => {
     return (
         <div className={style.user}>
             <div className={style.userActions}>
-                <img className={style.userLogo} src="" alt="" />
+                <Avatar size="large" icon={<UserOutlined />} />
+                {/* <img className={style.photos} src={props.user?.photos?.small} alt="" /> */}
                 <button
                     className={ buttonClasses }
                     onClick={() => props.onChangeFollow(props.user.id) }>
@@ -16,8 +19,7 @@ const User = (props) => {
             </div>
 
             <div className={style.userInformation}>
-                <h4 className={style.userName}>{props.user.fullName}</h4>
-                <span className={style.userLocation}>{props.user.location.country}, {props.user.location.city}</span>
+                <h4 className={style.userName}>{props.user.name}</h4>
                 <p className={style.userStatus}>{props.user.status}</p>
             </div>
         </div>
