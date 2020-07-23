@@ -43,7 +43,7 @@ export const switchFollowAction = (userId: number) => {
         id: userId
     }
 }
-export const setUsersAction = (users: Array<User>, totalCount: number) => {
+export const loadUsersAction = (users: Array<User>, totalCount: number) => {
     return {
         type: LOAD_USERS,
         users: users,

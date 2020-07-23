@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
-import Search from './Search';
-import { switchFollowAction, loadModeAction, setUsersAction } from '../../redux/reducers/search-reducer';
+import { switchFollowAction, loadUsersAction } from '../../redux/reducers/search-reducer';
+import SearchAPiContainer from './SearchAPiContainer';
 
 const mapStateToProps = (state) => {
     return { 
         users: state.searchPage.users,
-        needMore: state.searchPage.needMore,
         haveMore: state.searchPage.haveMore
     }
 }
@@ -16,14 +15,11 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(switchFollowAction(userId));
         },
         onLoadMore: (users, totalCount) => {
-            dispatch(setUsersAction(users, totalCount));
-        },
-        onSetUsers: (users, totalCount) => {
-            dispatch(setUsersAction(users, totalCount));
+            dispatch(loadUsersAction(users, totalCount));
         }
     }
 }
 
-const SearchContainer = connect(mapStateToProps, mapDispatchToProps)(Search);
+const SearchContainer = connect(mapStateToProps, mapDispatchToProps)(SearchAPiContainer);
 
 export default SearchContainer;
