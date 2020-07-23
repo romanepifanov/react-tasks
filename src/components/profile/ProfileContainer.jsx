@@ -1,6 +1,6 @@
-import Profile from './Profile';
-import { addPostAction, updateNewPostTextAction } from './../../redux/reducers/profile-reducer'
+import { onAddPost, onChangePost, onLoadProfile } from './../../redux/reducers/profile-reducer'
 import { connect } from 'react-redux';
+import ProfileAPiContainer from './ProfileAPiContainer';
 
 const mapStateToProps = (state) => {
     return {
@@ -8,17 +8,12 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onAddPost: () => {
-            dispatch(addPostAction(1));
-        },
-        onChangePost: (event) => {
-            dispatch(updateNewPostTextAction(event.target.value));
-        }
-    }
+const mapDispatchToProps = {
+    onLoadProfile,
+    onAddPost,
+    onChangePost
 }
 
-const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
+const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileAPiContainer);
 
 export default ProfileContainer;

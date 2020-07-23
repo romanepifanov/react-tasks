@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { switchFollowAction, loadUsersAction } from '../../redux/reducers/search-reducer';
+import { onChangeFollow, onLoadMore } from '../../redux/reducers/search-reducer';
 import SearchAPiContainer from './SearchAPiContainer';
 
 const mapStateToProps = (state) => {
@@ -9,15 +9,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onChangeFollow: (userId) => {
-            dispatch(switchFollowAction(userId));
-        },
-        onLoadMore: (users, totalCount) => {
-            dispatch(loadUsersAction(users, totalCount));
-        }
-    }
+const mapDispatchToProps = {
+    onChangeFollow,
+    onLoadMore
 }
 
 const SearchContainer = connect(mapStateToProps, mapDispatchToProps)(SearchAPiContainer);
