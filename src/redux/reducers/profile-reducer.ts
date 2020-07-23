@@ -1,7 +1,11 @@
+import { Profile } from './../../models/profile.model';
+import { ProfileState } from "../states/profile.state";
+
+const LOAD_PROFILE = "LOAD-PROFILE";
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
-let initialState = {
+let initialState: ProfileState = {
     postForm: {
         content: ''
     },
@@ -20,10 +24,11 @@ let initialState = {
             likesCount: 4,
             content: "I have new car"
         }
-    ]
+    ],
+    profile: null
 }
 
-const profileReducer = (state = initialState, action) => {
+const profileReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case ADD_POST:
             let newPost = {
@@ -51,23 +56,17 @@ const profileReducer = (state = initialState, action) => {
                     content: action.content
                 }
             };
+        case LOAD_PROFILE:
+            return {
+                ...state,
+                profile: action.profile
+        };
         default: return state;
     }
 }
 
-
-export const addPostAction = (userId) => {
-    return {
-        type: ADD_POST,
-        usrId: userId
-    }
-}
-
-export const updateNewPostTextAction = (content) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        content: content
-    }
-}
+export const onLoadProfile = (profile: Profile) => ({ type: LOAD_PROFILE, profile: profile });
+export const onAddPost = (userId: number) => ({ type: ADD_POST, usrId: userId });
+export const onChangePost = (content: string) => ({ type: UPDATE_NEW_POST_TEXT, content: content });
 
 export default profileReducer;

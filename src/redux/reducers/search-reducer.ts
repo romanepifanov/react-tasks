@@ -11,7 +11,7 @@ let initialState: SearchState = {
 
 const searchReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case LOAD_USERS: 
+        case LOAD_USERS:
             return {
                 ...state,
                 users: [
@@ -20,11 +20,11 @@ const searchReducer = (state = initialState, action: any) => {
                 ],
                 haveMore: (state.users.length + action.users.length) < action.totalCount
             };
-        case SWITCH_FOLLOW: 
+        case SWITCH_FOLLOW:
             let changedUser = state.users.find((u) => u.id === action.id);
 
-            if(changedUser) {
-                changedUser.followed =  !changedUser.followed;
+            if (changedUser) {
+                changedUser.followed = !changedUser.followed;
             }
 
             return {
@@ -37,18 +37,7 @@ const searchReducer = (state = initialState, action: any) => {
     }
 }
 
-export const switchFollowAction = (userId: number) => {
-    return {
-        type: SWITCH_FOLLOW,
-        id: userId
-    }
-}
-export const loadUsersAction = (users: Array<User>, totalCount: number) => {
-    return {
-        type: LOAD_USERS,
-        users: users,
-        totalCount: totalCount
-    }
-}
+export const onChangeFollow = (userId: number) => ({ type: SWITCH_FOLLOW, id: userId });
+export const onLoadMore = (users: Array<User>, totalCount: number) => ({ type: LOAD_USERS, users: users, totalCount: totalCount });
 
 export default searchReducer;
