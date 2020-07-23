@@ -2,6 +2,7 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import DialogItem from './components/dialog-item/DialogItem';
 import Message from './components/message/Message';
+import {Form, Input, Button} from 'antd';
 
 const Dialogs = (props) => {
     return (
@@ -14,10 +15,14 @@ const Dialogs = (props) => {
                     {props.state.messages.map((i, key) => <Message key={key} text={i.text} time={i.time} own={i.own} />)}
                 </div>
 
-                <form action="">
-                    <textarea onChange={props.onChangeText} value={props.state.dialogForm.newMessage}></textarea>
-                   <button onClick={props.onSendMessage} type="button">Send</button>
-                </form>
+                <Form className={style.dialogsForm} name="nest-messages" onFinish={props.onSendMessage}>
+                    <Form.Item>
+                        <Input.TextArea onChange={props.onChangeText} value={props.state.dialogForm.newMessage}/>
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit">Submit</Button>
+                    </Form.Item>
+                </Form>
             </div>
         </main>
     );

@@ -1,12 +1,16 @@
 import React from 'react';
-// import style from './PostForm.module.css';
+import {Form, Input, Button} from 'antd';
 
 const PostForm = (props) => {
     return (
-        <form>
-            <textarea onChange={props.onChangePost} value={props.content} cols="30" rows="10" />
-            <button type="button" onClick={props.onAddPost}>Add</button>
-        </form>
+         <Form name="nest-messages" onFinish={props.onAddPost}>
+            <Form.Item>
+                <Input.TextArea onChange={props.onChangePost} value={props.content}/>
+            </Form.Item>
+            <Form.Item>
+                <Button type="primary" htmlType="submit">Submit</Button>
+            </Form.Item>
+        </Form>
     );
 }
 
