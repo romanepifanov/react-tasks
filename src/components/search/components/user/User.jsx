@@ -9,8 +9,7 @@ const User = (props) => {
     return (
         <div className={style.user}>
             <div className={style.userActions}>
-                <Avatar size="large" icon={<UserOutlined />} />
-                {/* <img className={style.photos} src={props.user?.photos?.small} alt="" /> */}
+                <Avatar size="large" src={props.user?.photos?.small} icon={<UserOutlined />} />
                 <button
                     className={ buttonClasses }
                     onClick={() => props.onChangeFollow(props.user.id) }>

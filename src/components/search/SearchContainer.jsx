@@ -15,11 +15,11 @@ const mapDispatchToProps = (dispatch) => {
         onChangeFollow: (userId) => {
             dispatch(switchFollowAction(userId));
         },
-        onLoadMore: () => {
-            dispatch(loadModeAction());
+        onLoadMore: (users, totalCount) => {
+            dispatch(setUsersAction(users, totalCount));
         },
-        onSetUsers: (users) => {
-            dispatch(setUsersAction(users));
+        onSetUsers: (users, totalCount) => {
+            dispatch(setUsersAction(users, totalCount));
         }
     }
 }
