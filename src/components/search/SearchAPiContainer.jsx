@@ -2,11 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Search from './Search';
 
-class SearchAPiContainer extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
+class SearchAPIContainer extends React.Component {
     componentDidMount() {
         this.onLoadMore();
     }
@@ -25,4 +21,4 @@ class SearchAPiContainer extends React.Component {
     }
 }
 
-export default SearchAPiContainer;
+export default SearchAPIContainer;

@@ -1,6 +1,7 @@
 import { onAddPost, onChangePost, onLoadProfile } from './../../redux/reducers/profile-reducer'
 import { connect } from 'react-redux';
-import ProfileAPiContainer from './ProfileAPiContainer';
+import { withRouter } from 'react-router-dom';
+import ProfileAPIContainer from './ProfileAPIContainer';
 
 const mapStateToProps = (state) => {
     return {
@@ -13,7 +14,8 @@ const mapDispatchToProps = {
     onAddPost,
     onChangePost
 }
+const ComponentWithRouterData = withRouter(ProfileAPIContainer);
 
-const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileAPiContainer);
+const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(ComponentWithRouterData);
 
 export default ProfileContainer;

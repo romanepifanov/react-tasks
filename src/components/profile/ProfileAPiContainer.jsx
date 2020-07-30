@@ -2,25 +2,18 @@ import React from 'react';
 import axios from 'axios';
 import Profile from './Profile';
 
-class ProfileAPiContainer extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+class ProfileAPIContainer extends React.Component {
 
     componentDidMount() {
-        this.onLoadProfile();
-    }
-
-    onLoadProfile = () => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${2}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.userId}`)
             .then(response => {
                 this.props.onLoadProfile(response.data);
             });
     }
 
     render() {
-        return <Profile {...this.props}/>
+        return <Profile {...this.props} />
     }
 }
 
-export default ProfileAPiContainer;
+export default ProfileAPIContainer;

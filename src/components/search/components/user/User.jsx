@@ -2,6 +2,7 @@ import React from 'react';
 import style from './User.module.css';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
     const buttonClasses = `${style.userFollow} ${props.user.followed ? style.userFollowActive : '' }`;
@@ -9,7 +10,9 @@ const User = (props) => {
     return (
         <div className={style.user}>
             <div className={style.userActions}>
-                <Avatar size="large" src={props.user?.photos?.small} icon={<UserOutlined />} />
+                <NavLink to={'profile/' + props.user.id}>
+                    <Avatar size="large" src={props.user?.photos?.small} icon={<UserOutlined />} />
+                </NavLink>
                 <button
                     className={ buttonClasses }
                     onClick={() => props.onChangeFollow(props.user.id) }>

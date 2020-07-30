@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { onChangeFollow, onLoadMore } from '../../redux/reducers/search-reducer';
-import SearchAPiContainer from './SearchAPiContainer';
+import SearchAPIContainer from './SearchAPIContainer';
 
 const mapStateToProps = (state) => {
     return { 
@@ -14,6 +14,6 @@ const mapDispatchToProps = {
     onLoadMore
 }
 
-const SearchContainer = connect(mapStateToProps, mapDispatchToProps)(SearchAPiContainer);
+const SearchContainer = connect(mapStateToProps, mapDispatchToProps)(SearchAPIContainer);
 
 export default SearchContainer;

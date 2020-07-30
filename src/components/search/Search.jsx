@@ -1,14 +1,9 @@
 import React from 'react';
 import style from './Search.module.css';
 import User from './components/user/User';
-import axios from 'axios';
 import { Button } from 'antd';
 
 class Search extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         return <main className={style.search}>
             {this.props.users.map((u, key) => <User key={key} user={u} onChangeFollow={this.props.onChangeFollow} />)}
