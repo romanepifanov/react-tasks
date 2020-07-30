@@ -1,3 +1,4 @@
 export interface AuthState {
-    owner: any | null
+    owner: any | null,
+    isNeedLogin: boolean
 }
