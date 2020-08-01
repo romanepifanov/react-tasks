@@ -15,20 +15,20 @@ class SearchAPIContainer extends React.Component {
     }
 
     onChangeFollow = (userId, followed) => {
-        this.props.onFollowingInProgress();
+        this.props.onFollowingInProgress(userId);
 
         if (followed) {
             deleteFollowCall(userId).then(data => {
                 if (data.resultCode === 0) {
                     this.props.onChangeFollow(userId);
-                    this.props.onFollowingInProgress();
+                    this.props.onFollowingInProgress(userId);
                 }
             });
         } else {
             addFollowCall(userId).then(data => {
                 if (data.resultCode === 0) {
                     this.props.onChangeFollow(userId);
-                    this.props.onFollowingInProgress();
+                    this.props.onFollowingInProgress(userId);
                 }
             });
         }

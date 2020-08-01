@@ -8,7 +8,7 @@ const FOLLOWING_IN_PROGRESS = 'FOLLOWING IN PROGRESS';
 let initialState: SearchState = {
     users: [],
     haveMore: true,
-    followingInProgress: false
+    followingInProgress: []
 }
 
 const searchReducer = (state = initialState, action: any) => {
@@ -36,9 +36,17 @@ const searchReducer = (state = initialState, action: any) => {
                 ]
             };
         case FOLLOWING_IN_PROGRESS:
+            let ids = [...state.followingInProgress];
+
+            if(ids.indexOf(action.userId) < 0) {
+                ids.push(action.userId)
+            } else {
+                ids = ids.filter((id: number) => action.userId !== id);
+            }
+
             return {
                 ...state,
-                followingInProgress: !state.followingInProgress
+                followingInProgress: [...ids]
             };
         default: return state;
     }
@@ -46,6 +54,6 @@ const searchReducer = (state = initialState, action: any) => {
 
 export const onChangeFollow = (userId: number) => ({ type: SWITCH_FOLLOW, id: userId });
 export const onLoadMore = (users: Array<User>, totalCount: number) => ({ type: LOAD_USERS, users: users, totalCount: totalCount });
-export const onFollowingInProgress = () => ({ type: FOLLOWING_IN_PROGRESS });
+export const onFollowingInProgress = (userId: number) => ({ type: FOLLOWING_IN_PROGRESS, userId });
 
 export default searchReducer;

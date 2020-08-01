@@ -20,7 +20,7 @@ const User = (props) => {
                 className={style.userFollow}
                 onClick={() => props.onChangeFollow(props.user.id, props.user.followed)}
                 type={props.user.followed ? 'danger' : 'primary'}
-                size="small" loading={props.followingInProgress}>
+                size="small" loading={props.loading}>
                 {props.user.followed ? 'Unfollow' : 'Follow'}
             </Button>
         </Card>

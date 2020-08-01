@@ -10,7 +10,7 @@ class Search extends React.Component {
         if (this.props.users.length > 0) {
             return (
                 <main className={style.search}>
-                    {this.props.users.map((u, key) => <User key={key} user={u} followingInProgress={this.props.followingInProgress} onChangeFollow={this.props.onChangeFollow} />)}
+                    {this.props.users.map((u, key) => <User key={key} user={u} loading={this.props.followingInProgress.some(id => id === u.id)} onChangeFollow={this.props.onChangeFollow} />)}
                     <Button disabled={!this.props.haveMore} onClick={this.props.onLoadMore}>Load More</Button>
                 </main>);
         } else {
