@@ -5,7 +5,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
-    const buttonClasses = `${style.userFollow} ${props.user.followed ? style.userFollowActive : '' }`;
+    const buttonClasses = `${style.userFollow} ${props.user.followed ? '' : style.userFollowActive }`;
 
     return (
         <div className={style.user}>
@@ -15,8 +15,8 @@ const User = (props) => {
                 </NavLink>
                 <button
                     className={ buttonClasses }
-                    onClick={() => props.onChangeFollow(props.user.id) }>
-                    { props.user.followed ? 'Follow' : 'Unfollow' }
+                    onClick={() => props.onChangeFollow(props.user.id, props.user.followed) }>
+                    { props.user.followed ? 'Unfollow' : 'Follow' }
                 </button>
             </div>
 
