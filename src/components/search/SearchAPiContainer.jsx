@@ -1,9 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import Search from './Search';
-import environment from '../../environment';
+import { getUsersCall, deleteFollowCall, addFollowCall } from '../../api/api-service';
 
 class SearchAPIContainer extends React.Component {
+
     componentDidMount() {
         this.onLoadMore();
     }
@@ -11,38 +11,22 @@ class SearchAPIContainer extends React.Component {
     onLoadMore = () => {
         let page = this.props.users.length === 0 ? 1 : (this.props.users.length / 10) + 1;
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}`, { withCredentials: true })
-            .then(response => {
-                this.props.onLoadMore(response.data.items, response.data.totalCount);
-            });
+        getUsersCall(page).then((data) => this.props.onLoadMore(data.items, data.totalCount));
     }
 
     onChangeFollow = (userId, followed) => {
         if (followed) {
-            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
-                {
-                    withCredentials: true,
-                    headers: {
-                        "API-KEY": environment.API_KEY
-                    }
-                }).then(response => {
-                    if (response.data.resultCode === 0) {
-                        this.props.onChangeFollow(userId);
-                    }
-                });
+            deleteFollowCall(userId).then(data => {
+                if (data.resultCode === 0) {
+                    this.props.onChangeFollow(userId);
+                }
+            });
         } else {
-            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {},
-                {
-                    withCredentials: true,
-                    headers: {
-                        "API-KEY": environment.API_KEY
-                    }
-                })
-                .then(response => {
-                    if (response.data.resultCode === 0) {
-                        this.props.onChangeFollow(userId);
-                    }
-                });
+            addFollowCall(userId).then(data => {
+                if (data.resultCode === 0) {
+                    this.props.onChangeFollow(userId);
+                }
+            });
         }
     }
 

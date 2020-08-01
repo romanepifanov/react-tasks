@@ -1,19 +1,18 @@
 import React from 'react';
-import axios from 'axios';
 import Header from './Header';
+import { getStatusCall } from '../../api/api-service';
 
 class HeaderAPIContainer extends React.Component {
   authState = null;
 
   componentDidMount() {
     if (!this.props.owner && !this.props.isNeedLogin) {
-      axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
-        .then(response => {
-          if(response.data.messages[0] === "You are not authorized") {
+      getStatusCall().then(data => {
+          if(data.messages[0] === "You are not authorized") {
             this.props.onNeedLogin(true);
           } else {
-            this.props.onSetOwner(response.data.data);
-            this.props.onSetOwnerId(response.data.data.id);
+            this.props.onSetOwner(data.data);
+            this.props.onSetOwnerId(data.data.id);
           }
         });
     } else {
