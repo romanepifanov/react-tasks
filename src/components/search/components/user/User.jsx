@@ -1,31 +1,29 @@
 import React from 'react';
 import style from './User.module.css';
-import { Avatar } from 'antd';
+import { Avatar, Button, Card } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
+import Meta from 'antd/lib/card/Meta';
 
 const User = (props) => {
-    const buttonClasses = `${style.userFollow} ${props.user.followed ? '' : style.userFollowActive }`;
-
     return (
-        <div className={style.user}>
-            <div className={style.userActions}>
-                <NavLink to={'profile/' + props.user.id}>
-                    <Avatar size="large" src={props.user?.photos?.small} icon={<UserOutlined />} />
-                </NavLink>
-                <button
-                    disabled={props.followingInProgress}
-                    className={ buttonClasses }
-                    onClick={() => props.onChangeFollow(props.user.id, props.user.followed) }>
-                    { props.user.followed ? 'Unfollow' : 'Follow' }
-                </button>
-            </div>
+        <Card style={{ display: 'block', width: '100%', marginBottom: 16 }}>
+            <NavLink to={'profile/' + props.user.id} >
+                <Meta
+                    avatar={<Avatar size="large" src={props.user?.photos?.small} icon={<UserOutlined />} />}
+                    title={props.user.name}
+                    description={props.user.status}
+                />
+            </NavLink>
 
-            <div className={style.userInformation}>
-                <h4 className={style.userName}>{props.user.name}</h4>
-                <p className={style.userStatus}>{props.user.status}</p>
-            </div>
-        </div>
+            <Button
+                className={style.userFollow}
+                onClick={() => props.onChangeFollow(props.user.id, props.user.followed)}
+                type={props.user.followed ? 'danger' : 'primary'}
+                size="small" loading={props.followingInProgress}>
+                {props.user.followed ? 'Unfollow' : 'Follow'}
+            </Button>
+        </Card>
     );
 }
 
