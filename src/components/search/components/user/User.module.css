@@ -32,6 +32,11 @@
     color: #e0e0e0;
 }
 
+.userFollow:disabled {
+    cursor: not-allowed;
+    background-color: #eee;
+}
+
 .userFollowActive {
     background-color: #17a262;
 }

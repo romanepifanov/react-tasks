@@ -3,10 +3,12 @@ import { SearchState } from "../states/search.state";
 
 const SWITCH_FOLLOW = 'SWITCH-FOLLOW';
 const LOAD_USERS = 'LOAD-USERS';
+const FOLLOWING_IN_PROGRESS = 'FOLLOWING IN PROGRESS';
 
 let initialState: SearchState = {
     users: [],
-    haveMore: true
+    haveMore: true,
+    followingInProgress: false
 }
 
 const searchReducer = (state = initialState, action: any) => {
@@ -33,11 +35,17 @@ const searchReducer = (state = initialState, action: any) => {
                     ...state.users
                 ]
             };
+        case FOLLOWING_IN_PROGRESS:
+            return {
+                ...state,
+                followingInProgress: !state.followingInProgress
+            };
         default: return state;
     }
 }
 
 export const onChangeFollow = (userId: number) => ({ type: SWITCH_FOLLOW, id: userId });
 export const onLoadMore = (users: Array<User>, totalCount: number) => ({ type: LOAD_USERS, users: users, totalCount: totalCount });
+export const onFollowingInProgress = () => ({ type: FOLLOWING_IN_PROGRESS });
 
 export default searchReducer;

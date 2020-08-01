@@ -14,6 +14,7 @@ const User = (props) => {
                     <Avatar size="large" src={props.user?.photos?.small} icon={<UserOutlined />} />
                 </NavLink>
                 <button
+                    disabled={props.followingInProgress}
                     className={ buttonClasses }
                     onClick={() => props.onChangeFollow(props.user.id, props.user.followed) }>
                     { props.user.followed ? 'Unfollow' : 'Follow' }

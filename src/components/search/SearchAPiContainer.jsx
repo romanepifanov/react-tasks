@@ -15,23 +15,27 @@ class SearchAPIContainer extends React.Component {
     }
 
     onChangeFollow = (userId, followed) => {
+        this.props.onFollowingInProgress();
+
         if (followed) {
             deleteFollowCall(userId).then(data => {
                 if (data.resultCode === 0) {
                     this.props.onChangeFollow(userId);
+                    this.props.onFollowingInProgress();
                 }
             });
         } else {
             addFollowCall(userId).then(data => {
                 if (data.resultCode === 0) {
                     this.props.onChangeFollow(userId);
+                    this.props.onFollowingInProgress();
                 }
             });
         }
     }
 
     render() {
-        return <Search onChangeFollow={this.onChangeFollow} onLoadMore={this.onLoadMore} haveMore={this.props.haveMore} users={this.props.users} />
+        return <Search onChangeFollow={this.onChangeFollow} onLoadMore={this.onLoadMore} followingInProgress={this.props.followingInProgress} haveMore={this.props.haveMore} users={this.props.users} />
     }
 }
 
