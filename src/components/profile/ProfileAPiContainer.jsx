@@ -4,9 +4,7 @@ import { getProfileCall } from '../../api/api-service';
 
 class ProfileAPIContainer extends React.Component {
     componentDidMount() {
-        getProfileCall().then(response => {
-                this.props.onLoadProfile(response.data);
-            });
+        this.props.getProfile(this.props.match.params.userId);
     }
 
     render() {
