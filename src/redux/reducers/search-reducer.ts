@@ -1,5 +1,6 @@
 import { User } from './../../models/user.model';
 import { SearchState } from "../states/search.state";
+import { getUsersCall, deleteFollowCall, addFollowCall } from '../../api/api-service';
 
 const SWITCH_FOLLOW = 'SWITCH-FOLLOW';
 const LOAD_USERS = 'LOAD-USERS';
@@ -52,8 +53,34 @@ const searchReducer = (state = initialState, action: any) => {
     }
 }
 
-export const onChangeFollow = (userId: number) => ({ type: SWITCH_FOLLOW, id: userId });
-export const onLoadMore = (users: Array<User>, totalCount: number) => ({ type: LOAD_USERS, users: users, totalCount: totalCount });
-export const onFollowingInProgress = (userId: number) => ({ type: FOLLOWING_IN_PROGRESS, userId });
+const onChangeFollow = (userId: number) => ({ type: SWITCH_FOLLOW, id: userId });
+const onLoadMore = (users: Array<User>, totalCount: number) => ({ type: LOAD_USERS, users: users, totalCount: totalCount });
+const onFollowingInProgress = (userId: number) => ({ type: FOLLOWING_IN_PROGRESS, userId });
+
+export const getUsers = (page: number) => (dispatch: any) => {
+    getUsersCall(page).then((data) => dispatch(onLoadMore(data.items, data.totalCount)));
+}
+
+export const deleteFollow = (userId: number) => (dispatch: any) => {
+    dispatch(onFollowingInProgress(userId));
+
+    deleteFollowCall(userId).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(onChangeFollow(userId));
+            dispatch(onFollowingInProgress(userId));
+        }
+    });
+}
+
+export const addFollow = (userId: number) => (dispatch: any) => {
+    dispatch(onFollowingInProgress(userId));
+
+    addFollowCall(userId).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(onChangeFollow(userId));
+            dispatch(onFollowingInProgress(userId));
+        }
+    });
+}
 
 export default searchReducer;

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { onChangeFollow, onLoadMore, onFollowingInProgress } from '../../redux/reducers/search-reducer';
+import { getUsers, deleteFollow, addFollow } from '../../redux/reducers/search-reducer';
 import SearchAPIContainer from './SearchAPIContainer';
 
 const mapStateToProps = (state) => {
@@ -11,9 +11,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    onChangeFollow,
-    onLoadMore,
-    onFollowingInProgress
+    getUsers,
+    deleteFollow,
+    addFollow
 }
 
 const SearchContainer = connect(mapStateToProps, mapDispatchToProps)(SearchAPIContainer);

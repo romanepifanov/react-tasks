@@ -1,6 +1,5 @@
 import React from 'react';
 import Search from './Search';
-import { getUsersCall, deleteFollowCall, addFollowCall } from '../../api/api-service';
 
 class SearchAPIContainer extends React.Component {
 
@@ -11,27 +10,11 @@ class SearchAPIContainer extends React.Component {
     onLoadMore = () => {
         let page = this.props.users.length === 0 ? 1 : (this.props.users.length / 10) + 1;
 
-        getUsersCall(page).then((data) => this.props.onLoadMore(data.items, data.totalCount));
+        this.props.getUsersThunkCreator(page);
     }
 
     onChangeFollow = (userId, followed) => {
-        this.props.onFollowingInProgress(userId);
-
-        if (followed) {
-            deleteFollowCall(userId).then(data => {
-                if (data.resultCode === 0) {
-                    this.props.onChangeFollow(userId);
-                    this.props.onFollowingInProgress(userId);
-                }
-            });
-        } else {
-            addFollowCall(userId).then(data => {
-                if (data.resultCode === 0) {
-                    this.props.onChangeFollow(userId);
-                    this.props.onFollowingInProgress(userId);
-                }
-            });
-        }
+        followed ? this.props.deleteFollow(userId) : this.props.addFollow(userId);
     }
 
     render() {
