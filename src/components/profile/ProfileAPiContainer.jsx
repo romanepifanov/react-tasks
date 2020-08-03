@@ -1,6 +1,5 @@
 import React from 'react';
 import Profile from './Profile';
-import { getProfileCall } from '../../api/api-service';
 
 class ProfileAPIContainer extends React.Component {
     componentDidMount() {
