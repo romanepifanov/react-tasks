@@ -1,4 +1,6 @@
+import { onSetOwnerId } from './navbar-reducer';
 import { AuthState } from "../states/auth.state";
+import { getStatusCall } from '../../api/api-service';
 
 const SET_OWNER = "SET-OWNER";
 const NEED_LOGIN = "NEED-LOGIN";
@@ -24,7 +26,18 @@ const authReducer = (state = initialState, action: any) => {
         default: return state;
     }
 }
-export const onSetOwner = (owner: any) => ({ type: SET_OWNER, owner });
-export const onNeedLogin = (isNeedLogin: boolean) => ({ type: NEED_LOGIN, isNeedLogin });
+const onSetOwner = (owner: any) => ({ type: SET_OWNER, owner });
+const onNeedLogin = (isNeedLogin: boolean) => ({ type: NEED_LOGIN, isNeedLogin });
+
+export const setOwner = () => (dispatch: any) => {
+    getStatusCall().then(data => {
+        if (data.messages[0] === "You are not authorized") {
+            dispatch(onNeedLogin(true));
+        } else {
+            dispatch(onSetOwner(data.data));
+            dispatch(onSetOwnerId(data.data.id));
+        }
+    });
+}
 
 export default authReducer;

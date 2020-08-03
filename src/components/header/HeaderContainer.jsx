@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-import { onSetOwner, onNeedLogin } from '../../redux/reducers/auth-reducer';
-import { onSetOwnerId } from '../../redux/reducers/navbar-reducer';
+import { setOwner } from '../../redux/reducers/auth-reducer';
 import HeaderAPIContainer from './HeaderAPIContainer';
 
 const mapStateToProps = (state) => {
@@ -11,9 +10,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    onSetOwner,
-    onNeedLogin,
-    onSetOwnerId
+    setOwner
 }
 
 const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderAPIContainer);
