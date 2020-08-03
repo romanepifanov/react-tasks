@@ -10,7 +10,7 @@ class SearchAPIContainer extends React.Component {
     onLoadMore = () => {
         let page = this.props.users.length === 0 ? 1 : (this.props.users.length / 10) + 1;
 
-        this.props.getUsersThunkCreator(page);
+        this.props.getUsers(page);
     }
 
     onChangeFollow = (userId, followed) => {
