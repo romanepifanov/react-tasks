@@ -5,10 +5,8 @@ class HeaderAPIContainer extends React.Component {
   authState = null;
 
   componentDidMount() {
-    if (!this.props.owner && !this.props.isNeedLogin) {
+    if (!this.props.owner) {
       this.props.setOwner();
-    } else {
-      // need redirect to login
     }
   }
 

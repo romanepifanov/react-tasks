@@ -5,7 +5,8 @@ import ProfileAPIContainer from './ProfileAPIContainer';
 
 const mapStateToProps = (state) => {
     return {
-        state: state.profilePage
+        profileState: state.profilePage,
+        authState: state.authState
     }
 }
 
