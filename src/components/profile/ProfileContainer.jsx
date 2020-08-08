@@ -6,8 +6,7 @@ import { AuthComponent } from '../../hoc/AuthRedirect';
 
 const mapStateToProps = (state) => {
     return {
-        profileState: state.profilePage,
-        authState: state.authState
+        profileState: state.profilePage
     }
 }
 
