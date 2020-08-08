@@ -1,9 +1,10 @@
 import React from 'react';
 import { Descriptions, Skeleton, Avatar, Row, Col, Space } from 'antd';
 import { FacebookOutlined, TwitterOutlined, InstagramOutlined, LinkOutlined, YoutubeOutlined, MailOutlined, GithubOutlined } from '@ant-design/icons';
+import UserInfo from './components/UserInfo';
 
 const UserProfile = (props) => {
-
+    console.log(props.profile);
     if (!props.profile) {
         return <Skeleton />
     }
@@ -14,11 +15,7 @@ const UserProfile = (props) => {
                 <Col span={6}>
                     <Avatar shape="square" size={200} src={props.profile.photos.large} />
                 </Col>
-                <Col span={18}>
-                    <Descriptions title={props.profile.fullName}>
-                        <Descriptions.Item label="About me">{props.profile.aboutMe}</Descriptions.Item>
-                    </Descriptions>
-                </Col>
+                <UserInfo profile={props.profile} />
             </Row>
             <Row gutter={[8, 24]}>
                 <Col>
