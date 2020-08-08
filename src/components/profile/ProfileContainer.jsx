@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ProfileAPIContainer from './ProfileAPIContainer';
 import { AuthComponent } from '../../hoc/AuthRedirect';
+import { compose } from 'redux';
 
 const mapStateToProps = (state) => {
     return {
@@ -16,8 +17,8 @@ const mapDispatchToProps = {
     onChangePost
 }
 
-const ComponentWithRouterData = withRouter(AuthComponent(ProfileAPIContainer));
-
-const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(ComponentWithRouterData);
-
-export default ProfileContainer;
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withRouter,
+    AuthComponent
+)(ProfileAPIContainer)
