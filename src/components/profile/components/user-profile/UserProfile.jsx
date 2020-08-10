@@ -1,5 +1,5 @@
 import React from 'react';
-import { Descriptions, Skeleton, Avatar, Row, Col, Space } from 'antd';
+import { Skeleton, Avatar, Row, Col, Space } from 'antd';
 import { FacebookOutlined, TwitterOutlined, InstagramOutlined, LinkOutlined, YoutubeOutlined, MailOutlined, GithubOutlined } from '@ant-design/icons';
 import UserInfo from './components/UserInfo';
 

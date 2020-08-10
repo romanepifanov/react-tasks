@@ -39,12 +39,6 @@ export const updateProfileStatusCall = (status: string): Promise<any> => {
         });
 }
 
-export const getProfileStatusCall = (userId: number): Promise<any> => {
-    return _instance.get(`profile/status/${userId}`)
-        .then((response: any) => {
-            return response.data;
-        });
-}
 
 export const getStatusCall = (): Promise<any> => {
     return _instance.get(`auth/me`)
@@ -54,8 +48,8 @@ export const getStatusCall = (): Promise<any> => {
 }
 
 export const getProfileCall = (userId: number): Promise<any> => {
-    return _instance.get(`profile/${userId}`)
-        .then((response: any) => {
-            return response.data;
-        });
+    return Promise.all([_instance.get(`profile/${userId}`), _instance.get(`profile/status/${userId}`)])
+    .then(function (results) {
+        return {profile: results[0].data, status: results[1].data};
+    });
 }

@@ -9,7 +9,6 @@ class UserInfo extends React.Component {
         status: this.props.status
     };
 
-
     onChange = value => {
         this.setState({
             status: value

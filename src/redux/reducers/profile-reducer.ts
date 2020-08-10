@@ -1,6 +1,6 @@
 import { Profile } from './../../models/profile.model';
 import { ProfileState } from "../states/profile.state";
-import { getProfileCall, updateProfileStatusCall, getProfileStatusCall } from '../../api/api-service';
+import { getProfileCall, updateProfileStatusCall } from '../../api/api-service';
 
 const LOAD_PROFILE = "LOAD-PROFILE";
 const ADD_POST = "ADD-POST";
@@ -62,31 +62,28 @@ const profileReducer = (state = initialState, action: any) => {
         case LOAD_PROFILE:
             return {
                 ...state,
-                profile: action.profile
+                profile: action.profile,
+                status: action.status
             };
         case UPDATE_PROFILE_STATUS:
             return {
                 ...state,
-                status: action.content
+                status: action.status
             };
         default: return state;
     }
 }
 
 //old
-export const onAddPost = (userId: number) => ({ type: ADD_POST, usrId: userId });
-export const onChangePost = (content: string) => ({ type: UPDATE_NEW_POST_TEXT, content: content });
+export const onAddPost = (userId: number) => ({ type: ADD_POST, userId });
+export const onChangePost = (content: string) => ({ type: UPDATE_NEW_POST_TEXT, content });
 //end old
-const onLoadProfile = (profile: Profile) => ({ type: LOAD_PROFILE, profile: profile });
-const onUpdateProfileStatus = (content: string) => ({ type: UPDATE_PROFILE_STATUS, content: content });
+const onLoadProfile = (profile: Profile, status: string) => ({ type: LOAD_PROFILE, profile, status});
+const onUpdateProfileStatus = (status: string) => ({ type: UPDATE_PROFILE_STATUS, status });
 
 export const getProfile = (userId: number) => (dispatch: any) => {
     getProfileCall(userId).then(response => {
-        dispatch(onLoadProfile(response));
-    });
-
-    getProfileStatusCall(userId).then(response => {
-        dispatch(onUpdateProfileStatus(response));
+        dispatch(onLoadProfile(response.profile, response.status));
     });
 }
 
