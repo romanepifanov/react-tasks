@@ -4,7 +4,6 @@ import { FacebookOutlined, TwitterOutlined, InstagramOutlined, LinkOutlined, You
 import UserInfo from './components/UserInfo';
 
 const UserProfile = (props) => {
-    console.log(props.profile);
     if (!props.profile) {
         return <Skeleton />
     }
@@ -15,7 +14,7 @@ const UserProfile = (props) => {
                 <Col span={6}>
                     <Avatar shape="square" size={200} src={props.profile.photos.large} />
                 </Col>
-                <UserInfo profile={props.profile} />
+                <UserInfo profile={props.profile} status={props.status} updateProfileStatus={props.updateProfileStatus}/>
             </Row>
             <Row gutter={[8, 24]}>
                 <Col>

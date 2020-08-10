@@ -6,12 +6,11 @@ import UserProfile from './components/user-profile/UserProfile';
 
 class Profile extends React.Component {
 
-
     render() {
 
         return (
             <main className={style.profile}>
-                <UserProfile profile={this.props.profileState.profile} />
+                <UserProfile status={this.props.profileState.status} profile={this.props.profileState.profile} updateProfileStatus={this.props.updateProfileStatus}/>
 
                 <PostForm onAddPost={this.props.onAddPost} onChangePost={(event) => this.props.onChangePost(event.target.value)} content={this.props.profileState.postForm.content} />
 
