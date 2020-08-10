@@ -1,10 +1,11 @@
 import { Profile } from './../../models/profile.model';
 import { ProfileState } from "../states/profile.state";
-import { getProfileCall } from '../../api/api-service';
+import { getProfileCall, updateProfileStatusCall, getProfileStatusCall } from '../../api/api-service';
 
 const LOAD_PROFILE = "LOAD-PROFILE";
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const UPDATE_PROFILE_STATUS = "UPDATE-PROFILE-STATUS";
 
 let initialState: ProfileState = {
     postForm: {
@@ -26,7 +27,8 @@ let initialState: ProfileState = {
         content: "I have new car"
     }
     ],
-    profile: null
+    profile: null,
+    status: ''
 }
 
 const profileReducer = (state = initialState, action: any) => {
@@ -62,17 +64,37 @@ const profileReducer = (state = initialState, action: any) => {
                 ...state,
                 profile: action.profile
             };
+        case UPDATE_PROFILE_STATUS:
+            return {
+                ...state,
+                status: action.content
+            };
         default: return state;
     }
 }
 
-const onLoadProfile = (profile: Profile) => ({ type: LOAD_PROFILE, profile: profile });
+//old
 export const onAddPost = (userId: number) => ({ type: ADD_POST, usrId: userId });
 export const onChangePost = (content: string) => ({ type: UPDATE_NEW_POST_TEXT, content: content });
+//end old
+const onLoadProfile = (profile: Profile) => ({ type: LOAD_PROFILE, profile: profile });
+const onUpdateProfileStatus = (content: string) => ({ type: UPDATE_PROFILE_STATUS, content: content });
 
 export const getProfile = (userId: number) => (dispatch: any) => {
     getProfileCall(userId).then(response => {
         dispatch(onLoadProfile(response));
+    });
+
+    getProfileStatusCall(userId).then(response => {
+        dispatch(onUpdateProfileStatus(response));
+    });
+}
+
+export const updateProfileStatus = (status: string) => (dispatch: any) => {
+    updateProfileStatusCall(status).then(response => {
+        if(response) {
+            dispatch(onUpdateProfileStatus(status));
+        }
     });
 }
 
