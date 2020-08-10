@@ -32,6 +32,20 @@ export const addFollowCall = (userId: number): Promise<any> => {
         });
 }
 
+export const updateProfileStatusCall = (status: string): Promise<any> => {
+    return _instance.put(`profile/status`, { status })
+        .then((response: any) => {
+            return response.status === 200;
+        });
+}
+
+export const getProfileStatusCall = (userId: number): Promise<any> => {
+    return _instance.get(`profile/status/${userId}`)
+        .then((response: any) => {
+            return response.data;
+        });
+}
+
 export const getStatusCall = (): Promise<any> => {
     return _instance.get(`auth/me`)
         .then((response: any) => {
