@@ -9,6 +9,15 @@ class UserInfo extends React.Component {
         status: this.props.status
     };
 
+    componentDidUpdate = (previousProps, previousState) => {
+        if (previousProps.status !== this.props.status) {
+            this.setState({
+                editMode: false,
+                status: this.props.status
+            });
+        }
+    }
+
     onChange = value => {
         this.setState({
             status: value
