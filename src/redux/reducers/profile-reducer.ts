@@ -1,6 +1,7 @@
 import { Profile } from './../../models/profile.model';
 import { ProfileState } from "../states/profile.state";
 import { getProfileCall, updateProfileStatusCall } from '../../api/api-service';
+import { reset } from 'redux-form';
 
 const LOAD_PROFILE = "LOAD-PROFILE";
 const ADD_POST = "ADD-POST";
@@ -59,11 +60,12 @@ const profileReducer = (state = initialState, action: any) => {
 }
 
 const onAddPost = (userId: number, content: string) => ({ type: ADD_POST, userId, content });
-const onLoadProfile = (profile: Profile, status: string) => ({ type: LOAD_PROFILE, profile, status});
+const onLoadProfile = (profile: Profile, status: string) => ({ type: LOAD_PROFILE, profile, status });
 const onUpdateProfileStatus = (status: string) => ({ type: UPDATE_PROFILE_STATUS, status });
 
 export const addPost = (userId: number, content: string) => (dispatch: any) => {
     dispatch(onAddPost(userId, content));
+    dispatch(reset('postForm'));
 }
 
 export const getProfile = (userId: number) => (dispatch: any) => {
@@ -74,7 +76,7 @@ export const getProfile = (userId: number) => (dispatch: any) => {
 
 export const updateProfileStatus = (status: string) => (dispatch: any) => {
     updateProfileStatusCall(status).then(response => {
-        if(response) {
+        if (response) {
             dispatch(onUpdateProfileStatus(status));
         }
     });
