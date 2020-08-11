@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setOwner } from '../../redux/reducers/auth-reducer';
+import { setOwner, logout } from '../../redux/reducers/auth-reducer';
 import HeaderAPIContainer from './HeaderAPIContainer';
 
 const mapStateToProps = (state) => {
@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    setOwner
+    setOwner,
+    logout
 }
 
 const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderAPIContainer);

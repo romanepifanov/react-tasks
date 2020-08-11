@@ -1,10 +1,11 @@
 import { onSetOwnerId } from './navbar-reducer';
 import { AuthState } from "../states/auth.state";
-import { getStatusCall, loginCall } from '../../api/auth-service';
+import { getStatusCall, loginCall, logoutCall } from '../../api/auth-service';
 import { reset } from 'redux-form';
 
 const SET_OWNER = "SET-OWNER";
 const NEED_LOGIN = "NEED-LOGIN";
+const LOGOUT = "LOGOUT";
 
 let initialState: AuthState = {
     owner: null,
@@ -24,11 +25,18 @@ const authReducer = (state = initialState, action: any) => {
                 ...state,
                 isNeedLogin: action.isNeedLogin
             };
+        case LOGOUT:
+            return {
+                ...state,
+                owner: null,
+                isNeedLogin: true
+            };
         default: return state;
     }
 }
 const onSetOwner = (owner: any) => ({ type: SET_OWNER, owner });
 const onNeedLogin = (isNeedLogin: boolean) => ({ type: NEED_LOGIN, isNeedLogin });
+const onLogout = () => ({ type: LOGOUT });
 
 export const setOwner = () => (dispatch: any) => {
     getStatusCall().then(data => {
@@ -45,6 +53,14 @@ export const login = (formaData: any) => (dispatch: any) => {
     loginCall(formaData).then(data => {
         debugger
         dispatch(reset('postForm'));
+    });
+}
+
+export const logout = (formaData: any) => (dispatch: any) => {
+    logoutCall().then(data => {
+        if (data.resultCode === 0) {
+            dispatch(onLogout());
+        }
     });
 }
 
