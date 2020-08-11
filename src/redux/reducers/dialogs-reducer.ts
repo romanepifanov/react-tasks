@@ -27,6 +27,10 @@ const dialogsReducer = (state = initialState, action: any) => {
     }
 }
 
-export const sendMessageAction = (content: string) => ({ type: SEND_MESSAGE, content });
+const onSendMessage = (content: string) => ({ type: SEND_MESSAGE, content });
+
+export const sendMessage = (content: string) => (dispatch: any) => {
+    dispatch(onSendMessage(content));
+};
 
 export default dialogsReducer;

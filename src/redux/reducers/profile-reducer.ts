@@ -58,11 +58,13 @@ const profileReducer = (state = initialState, action: any) => {
     }
 }
 
-//old
-export const onAddPost = (userId: number, content: string) => ({ type: ADD_POST, userId, content });
-//end old
+const onAddPost = (userId: number, content: string) => ({ type: ADD_POST, userId, content });
 const onLoadProfile = (profile: Profile, status: string) => ({ type: LOAD_PROFILE, profile, status});
 const onUpdateProfileStatus = (status: string) => ({ type: UPDATE_PROFILE_STATUS, status });
+
+export const addPost = (userId: number, content: string) => (dispatch: any) => {
+    dispatch(onAddPost(userId, content));
+}
 
 export const getProfile = (userId: number) => (dispatch: any) => {
     getProfileCall(userId).then(response => {
