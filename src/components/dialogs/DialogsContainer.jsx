@@ -1,8 +1,8 @@
-import Dialogs from './Dialogs';
-import { sendMessageAction, updateNewMessageTextAction } from '../../redux/reducers/dialogs-reducer';
+import { sendMessage } from '../../redux/reducers/dialogs-reducer';
 import { connect } from 'react-redux';
 import { AuthComponent } from '../../hoc/AuthRedirect';
 import { compose } from 'redux';
+import DialogsAPIContainer from './DialogsAPIContainer';
 
 const mapStateToProps = (state) => {
     return {
@@ -10,18 +10,11 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onSendMessage: () => {
-            dispatch(sendMessageAction());
-        },
-        onChangeText: (event) => {
-            dispatch(updateNewMessageTextAction(event.target.value));
-        }
-    }
+const mapDispatchToProps = {
+    sendMessage
 }
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     AuthComponent
-)(Dialogs)
+)(DialogsAPIContainer)
