@@ -1,7 +1,7 @@
 import { Profile } from './../../models/profile.model';
 import { ProfileState } from "../states/profile.state";
-import { getProfileCall, updateProfileStatusCall } from '../../api/api-service';
 import { reset } from 'redux-form';
+import { getProfileCall, updateProfileStatusCall } from '../../api/profile-service';
 
 const LOAD_PROFILE = "LOAD-PROFILE";
 const ADD_POST = "ADD-POST";

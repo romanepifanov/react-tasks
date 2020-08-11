@@ -1,6 +1,6 @@
 import { User } from './../../models/user.model';
 import { SearchState } from "../states/search.state";
-import { getUsersCall, deleteFollowCall, addFollowCall } from '../../api/api-service';
+import { getUsersCall, deleteFollowCall, addFollowCall } from '../../api/users-service';
 
 const SWITCH_FOLLOW = 'SWITCH-FOLLOW';
 const LOAD_USERS = 'LOAD-USERS';
