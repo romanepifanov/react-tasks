@@ -53,3 +53,11 @@ export const getProfileCall = (userId: number): Promise<any> => {
         return {profile: results[0].data, status: results[1].data};
     });
 }
+
+
+export const loginCall = (formData: any): Promise<any> => {
+    return _instance.post(`auth/login`, formData)
+        .then((response: any) => {
+            return response.data;
+        });
+}

@@ -5,6 +5,7 @@ import searchReducer from "./reducers/search-reducer";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
 import authReducer from "./reducers/auth-reducer";
+import { reducer as formReducer } from 'redux-form'
 
 let reducers = combineReducers({
     profilePage: profileReducer,
@@ -12,6 +13,7 @@ let reducers = combineReducers({
     navbarPage: navbarReducer,
     searchPage: searchReducer,
     authState: authReducer,
+    form: formReducer
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware))
