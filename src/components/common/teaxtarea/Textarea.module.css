@@ -1,0 +1,9 @@
+.textareaBox {
+    height: 78px;
+    margin-bottom: 0;
+}
+
+.textarea {
+    width: 100%;
+    resize: none;
+}
