@@ -4,13 +4,9 @@ import { getProfileCall, updateProfileStatusCall } from '../../api/api-service';
 
 const LOAD_PROFILE = "LOAD-PROFILE";
 const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const UPDATE_PROFILE_STATUS = "UPDATE-PROFILE-STATUS";
 
 let initialState: ProfileState = {
-    postForm: {
-        content: ''
-    },
     posts: [{
         id: 1,
         likesCount: 4,
@@ -37,7 +33,7 @@ const profileReducer = (state = initialState, action: any) => {
             let newPost = {
                 id: action.userId,
                 likesCount: 0,
-                content: state.postForm.content
+                content: action.content
             };
 
             return {
@@ -45,19 +41,7 @@ const profileReducer = (state = initialState, action: any) => {
                 posts: [
                     ...state.posts,
                     newPost
-                ],
-                postForm: {
-                    ...state.postForm,
-                    content: ''
-                }
-            };
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                postForm: {
-                    ...state.postForm,
-                    content: action.content
-                }
+                ]
             };
         case LOAD_PROFILE:
             return {
@@ -75,8 +59,7 @@ const profileReducer = (state = initialState, action: any) => {
 }
 
 //old
-export const onAddPost = (userId: number) => ({ type: ADD_POST, userId });
-export const onChangePost = (content: string) => ({ type: UPDATE_NEW_POST_TEXT, content });
+export const onAddPost = (userId: number, content: string) => ({ type: ADD_POST, userId, content });
 //end old
 const onLoadProfile = (profile: Profile, status: string) => ({ type: LOAD_PROFILE, profile, status});
 const onUpdateProfileStatus = (status: string) => ({ type: UPDATE_PROFILE_STATUS, status });

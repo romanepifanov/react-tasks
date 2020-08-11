@@ -10,9 +10,9 @@ class Profile extends React.Component {
 
         return (
             <main className={style.profile}>
-                <UserProfile status={this.props.profileState.status} profile={this.props.profileState.profile} updateProfileStatus={this.props.updateProfileStatus}/>
+                <UserProfile status={this.props.profileState.status} profile={this.props.profileState.profile} updateProfileStatus={this.props.updateProfileStatus} />
 
-                <PostForm onAddPost={this.props.onAddPost} onChangePost={(event) => this.props.onChangePost(event.target.value)} content={this.props.profileState.postForm.content} />
+                <PostForm onSubmit={this.props.onSubmit} />
 
                 {this.props.profileState.posts.map((i, key) => <Post key={key} likesCount={i.likesCount} content={i.content} />)}
             </main>

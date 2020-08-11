@@ -14,7 +14,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     getProfile,
     onAddPost,
-    onChangePost,
     updateProfileStatus,
 }
 
