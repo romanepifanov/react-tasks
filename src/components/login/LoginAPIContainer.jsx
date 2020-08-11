@@ -5,7 +5,6 @@ import { loginCall } from '../../api/api-service';
 class LoginAPIContainer extends React.Component {
 
     onSubmit = (formaData) => {
-        console.log(formaData);
         loginCall(formaData);
     }
 
