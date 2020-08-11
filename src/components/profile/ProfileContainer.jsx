@@ -1,4 +1,4 @@
-import { onAddPost, onChangePost, getProfile, updateProfileStatus } from './../../redux/reducers/profile-reducer'
+import { addPost, getProfile, updateProfileStatus } from './../../redux/reducers/profile-reducer'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ProfileAPIContainer from './ProfileAPIContainer';
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     getProfile,
-    onAddPost,
+    addPost,
     updateProfileStatus,
 }
 

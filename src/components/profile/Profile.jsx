@@ -1,8 +1,8 @@
 import React from 'react';
 import style from './Profile.module.css';
-import PostForm from './components/form-post/PostForm';
 import Post from './components/post/Post';
 import UserProfile from './components/user-profile/UserProfile';
+import PostFormContainer from './components/form-post/PostForm';
 
 class Profile extends React.Component {
 
@@ -12,7 +12,7 @@ class Profile extends React.Component {
             <main className={style.profile}>
                 <UserProfile status={this.props.profileState.status} profile={this.props.profileState.profile} updateProfileStatus={this.props.updateProfileStatus} />
 
-                <PostForm onSubmit={this.props.onSubmit} />
+                <PostFormContainer onSubmit={this.props.onSubmit} />
 
                 {this.props.profileState.posts.map((i, key) => <Post key={key} likesCount={i.likesCount} content={i.content} />)}
             </main>

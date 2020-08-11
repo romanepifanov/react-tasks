@@ -13,8 +13,7 @@ class ProfileAPIContainer extends React.Component {
     }
 
     onSubmit = (formaData) => {
-        this.props.onAddPost(this.props.match.params.userId, formaData.content);
-        console.log(formaData);
+        this.props.addPost(this.props.match.params.userId, formaData.content);
     }
 
     render() {
