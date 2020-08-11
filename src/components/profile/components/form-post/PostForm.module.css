@@ -1,0 +1,9 @@
+.form {
+    width: 100%;
+}
+
+.textarea {
+    width: 100%;
+    resize: none;
+    margin-bottom: 20px;
+}

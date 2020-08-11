@@ -1,17 +1,23 @@
 import React from 'react';
-import {Form, Input, Button} from 'antd';
+import { Button } from 'antd';
+import { Field, reduxForm } from 'redux-form'
+import styles from './PostForm.module.css'
 
-const PostForm = (props) => {
-    return (
-         <Form name="new-post-form" onFinish={props.onAddPost}>
-            <Form.Item>
-                <Input.TextArea onChange={props.onChangePost} value={props.content}/>
-            </Form.Item>
-            <Form.Item>
+class PostForm extends React.Component {
+
+    render() {
+        return (
+            <form onSubmit={this.props.handleSubmit} className={styles.form}>
+                <Field id={'email__Id'} className={styles.textarea} name={'content'} component={'textarea'} />
+
                 <Button type="primary" htmlType="submit">Submit</Button>
-            </Form.Item>
-        </Form>
-    );
+            </form>
+        );
+    }
 }
 
-export default PostForm;
+const PostFormContainer = reduxForm({
+    form: 'postForm'
+})(PostForm)
+
+export default PostFormContainer;
