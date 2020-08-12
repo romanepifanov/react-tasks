@@ -8,7 +8,7 @@ import TextInput from '../../../common/text-input/TextInput';
 import CheckboxInput from '../../../common/checkbox-input/CheckboxInput';
 import { Typography } from 'antd';
 
-const { Text, Link } = Typography;
+const { Text } = Typography;
 
 class LoginForm extends React.Component {
   render() {
