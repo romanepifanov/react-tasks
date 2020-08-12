@@ -1,7 +1,7 @@
 import { onSetOwnerId } from './navbar-reducer';
 import { AuthState } from "../states/auth.state";
 import { getStatusCall, loginCall, logoutCall } from '../../api/auth-service';
-import { reset } from 'redux-form';
+import { reset, stopSubmit } from 'redux-form';
 
 const SET_OWNER = "SET-OWNER";
 const NEED_LOGIN = "NEED-LOGIN";
@@ -51,9 +51,14 @@ export const setOwner = () => (dispatch: any) => {
 
 export const login = (formaData: any) => (dispatch: any) => {
     loginCall(formaData).then(data => {
-        dispatch(reset('postForm'));
-        dispatch(onSetOwner(data.data));
-        dispatch(onSetOwnerId(data.data.id));
+        if (data.resultCode === 0) {
+            dispatch(reset('login'));
+            dispatch(onSetOwner(data.data));
+            dispatch(onSetOwnerId(data.data.id));
+        } else {
+            let action = stopSubmit('login', { _error: data.messages });
+            dispatch(action);
+        }
     });
 }
 
