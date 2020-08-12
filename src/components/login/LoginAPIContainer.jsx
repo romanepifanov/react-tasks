@@ -8,7 +8,7 @@ class LoginAPIContainer extends React.Component {
     }
 
     render() {
-        return <Login onSubmit={this.onSubmit} />
+        return <Login onSubmit={this.onSubmit} {...this.props} />
     }
 }
 

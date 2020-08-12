@@ -6,7 +6,7 @@ class Header extends React.Component {
     render() {
         return (
             <header className={style.header}>
-                <Button onClick={this.props.eventHandler}> {this.props.owner != null ? 'logout' : 'login'}</Button>
+                <Button onClick={this.props.eventHandler}> {this.props.owner !== null ? 'logout' : 'login'}</Button>
             </header>
         );
     }

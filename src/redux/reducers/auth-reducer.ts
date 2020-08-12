@@ -51,8 +51,9 @@ export const setOwner = () => (dispatch: any) => {
 
 export const login = (formaData: any) => (dispatch: any) => {
     loginCall(formaData).then(data => {
-        debugger
         dispatch(reset('postForm'));
+        dispatch(onSetOwner(data.data));
+        dispatch(onSetOwnerId(data.data.id));
     });
 }
 

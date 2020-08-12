@@ -3,7 +3,10 @@ import LoginAPIContainer from './LoginAPIContainer';
 import { login } from '../../redux/reducers/auth-reducer';
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        owner: state.authState.owner,
+        isNeedLogin: state.authState.isNeedLogin
+    }
 }
 
 const mapDispatchToProps = {
