@@ -6,13 +6,13 @@ import * as serviceWorker from './serviceWorker';
 import store from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import App from './App';
+import AppContainer from './AppContainer';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App store={store}/>
+        <AppContainer store={store}/>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,
