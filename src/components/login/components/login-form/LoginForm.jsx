@@ -2,30 +2,25 @@ import React from 'react';
 import { Button } from 'antd';
 import { Field, reduxForm } from 'redux-form'
 import styles from './LoginForm.module.css'
+import PasswordInput from '../../../common/password-input/PasswordInput';
+import { requeuedField } from '../../../../utils/Validators';
+import TextInput from '../../../common/text-input/TextInput';
+import CheckboxInput from '../../../common/checkbox-input/CheckboxInput';
+import { Typography } from 'antd';
+
+const { Text, Link } = Typography;
 
 class LoginForm extends React.Component {
   render() {
     return (
       <form className={styles.form} onSubmit={this.props.handleSubmit}>
-        <div className={styles.inputBox}>
-          <label htmlFor="email__Id" className={styles.inputLabel}>
-            Email
-            <Field id={'email__Id'} className={styles.input} name={'email'} component={'input'} type={"text"} />
-          </label>
-        </div>
-        <div className={styles.inputBox}>
-          <label htmlFor="password__Id" className={styles.inputLabel}>
-            Password
-            <Field id={'password__Id'} className={styles.input} name={'password'} component={'input'} type={"password"} />
-          </label>
-        </div>
-        <div className={styles.inputBox}>
-          <label htmlFor="rememberMe__Id">
-            Remember me
-            <Field id={'rememberMe__Id'} className={styles.checkbox} name={'rememberMe'} component={'input'} type={"checkbox"} />
-          </label>
-        </div>
+        <Field id={'email__Id'} name={'email'} labelText="Username" component={TextInput} type={"text"} validate={[requeuedField]} />
+        <Field id={'password__Id'} name={'password'} labelText="Password" component={PasswordInput} type={"password"} validate={[requeuedField]} />
+        <Field id={'rememberMe__Id'} name={'rememberMe'} labelText="Remember me" component={CheckboxInput} type={"checkbox"} />
 
+        <div className={styles.loginDangerMessageBox}>
+          <Text type="danger">{this.props.error}</Text>
+        </div>
 
         <Button type='primary' htmlType='submit'>Submit</Button>
       </form>
