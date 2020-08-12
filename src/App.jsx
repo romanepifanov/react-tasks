@@ -11,25 +11,33 @@ import SearchContainer from './components/search/SearchContainer';
 import HeaderContainer from './components/header/HeaderContainer';
 import LoginContainer from './components/login/LoginContainer';
 
-const App = (props) => {
-  return (
-    <div className={style.app}>
-      <HeaderContainer />
+class App extends React.Component {
+  componentDidMount() {
+    if (this.props.owner === null) {
+      this.props.setOwner();
+    }
+  }
 
-      <main className={style.wrapper}>
-        <NavbarContainer store={props.store} />
-        {/* <Redirect exact from="/" to="profile/:userId" />
-        <Redirect from='*' to='/profile/:userId' /> */}
-        <Route path="/profile/:userId" render={() => <ProfileContainer />} />
-        <Route path="/dialogs" render={() => <DialogsContainer />} />
-        <Route path="/search" render={() => <SearchContainer />} />
-        <Route path="/news" render={() => <News />} />
-        <Route path="/music" render={() => <Music />} />
-        <Route path="/settings" render={() => <Settings />} />
-        <Route path="/login" render={() => <LoginContainer />} />
-      </main>
-    </div>
-  );
+  render() {
+    return (
+      <div className={style.app}>
+        <HeaderContainer />
+
+        <main className={style.wrapper}>
+          <NavbarContainer store={this.props.store} />
+          {/* <Redirect exact from="/" to="profile/:userId" />
+          <Redirect from='*' to='/profile/:userId' /> */}
+          <Route path="/profile/:userId" render={() => <ProfileContainer />} />
+          <Route path="/dialogs" render={() => <DialogsContainer />} />
+          <Route path="/search" render={() => <SearchContainer />} />
+          <Route path="/news" render={() => <News />} />
+          <Route path="/music" render={() => <Music />} />
+          <Route path="/settings" render={() => <Settings />} />
+          <Route path="/login" render={() => <LoginContainer />} />
+        </main>
+      </div>
+    );
+  }
 }
 
 export default App;
