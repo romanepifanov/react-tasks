@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import { getUsers, deleteFollow, addFollow } from '../../redux/reducers/search-reducer';
+import { selectUsers, selectHaveMore, selectFollowingInProgress } from '../../redux/selectors/search-selectors';
 import SearchAPIContainer from './SearchAPIContainer';
 
 const mapStateToProps = (state) => {
-    return { 
-        users: state.searchPage.users,
-        haveMore: state.searchPage.haveMore,
-        followingInProgress: state.searchPage.followingInProgress
+    return {
+        users: selectUsers(state),
+        haveMore: selectHaveMore(state),
+        followingInProgress: selectFollowingInProgress(state)
     }
 }
 

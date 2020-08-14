@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import { logout } from '../../redux/reducers/auth-reducer';
 import HeaderAPIContainer from './HeaderAPIContainer';
+import { selectIsNeedLogin, selectOwner } from '../../redux/selectors/auth-selectors';
 
 const mapStateToProps = (state) => {
     return { 
-        owner: state.authState.owner,
-        isNeedLogin: state.authState.isNeedLogin
+        owner: selectOwner(state),
+        isNeedLogin: selectIsNeedLogin(state)
     }
 }
 
